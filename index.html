@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Gift</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameboy-container">
+        <!-- Password Screen -->
+        <div id="password-screen" class="screen active">
+            <div class="password-container">
+                <div class="password-header">
+                    <div class="lock-icon">🔒</div>
+                    <h1 class="password-title">Special Access</h1>
+                    <p class="password-subtitle">Untuk Keylla Indra Sari 💕</p>
+                </div>
+                
+                <div class="password-content">
+                    <div class="clue-section">
+                        <h3 class="clue-title">💝 Clue:</h3>
+                        <p class="clue-text">Tanggal jadian kita yang pertama kali 💕</p>
+                        <p class="clue-hint">Format: (contoh : 28125)
+                    </div>
+                    
+                    <div class="input-section">
+                        <input type="password" id="password-input" class="password-input" placeholder="Masukkan tanggal jadian..." maxlength="8">
+                        <button id="password-submit" class="password-submit">💕 MASUK 💕</button>
+                    </div>
+                    
+                    <div class="attempts-info">
+                        <p class="attempts-text">Percobaan: <span id="attempts-count">0</span>/3</p>
+                    </div>
+                    
+                    <div class="hint-section">
+                        <button id="show-hint" class="hint-btn">💡 Butuh hint lebih?</button>
+                        <div id="extra-hint" class="extra-hint hidden">
+                            <p>💌 Hint: Kamis Sayangggggg
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen">
+            <div class="gameboy-screen">
+                <div class="screen-content">
+                    <h1 class="title">HAPPY GIRLFRIEND DAYYYY <3</h1>
+                    <div class="loading-text">Masih Loading :)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                        <div class="progress-text">38%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Screen -->
+        <div id="main-screen" class="screen">
+            <div class="gameboy-body">
+                <div class="gameboy-header">
+                    <div class="power-indicator">
+                        <span class="power-dot"></span>
+                        <span class="power-text">Untuk Keylla</span>
+                    </div>
+                    <div class="brand-text">Happy 1 October</div>
+                </div>
+                
+                <div class="gameboy-screen">
+                    <div class="screen-content">
+                        <h1 class="birthday-title">Happy GIRLFRIEND Dayy</h1>
+                        <div class="start-text">Keylla Indra Sari</div>
+                        <div class="screen-info">
+                            <span class="dot-matrix">Dari Iyannnnn :) <3</span>
+                            <span class="battery">
+                                <span class="battery-dot"></span>
+                                I Always Love you
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-buttons">
+                    <button class="menu-btn message-btn" data-page="message">PESAN</button>
+                    <button class="menu-btn gallery-btn" data-page="gallery">GALERI</button>
+                    <button class="menu-btn music-btn" data-page="music">MUSIK</button>
+                </div>
+
+                <div class="bottom-controls">
+                    <button class="control-btn select-btn">SELECT</button>
+                    <button class="control-btn start-btn">START</button>
+                </div>
+
+                <div class="speaker-grille"></div>
+            </div>
+        </div>
+
+        <!-- Message Screen -->
+        <div id="message-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                        <!-- Content will be populated by JavaScript -->
+                </div>
+                <div class="page-controls">
+                    <button class="page-btn back-btn" data-page="main">KEMBALI</button>
+                    <button class="page-btn continue-btn">SELANJUTNYA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Screen -->
+        <div id="gallery-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                    <div class="page-header">Gallery</div>
+                    <div class="gallery-content">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="page-controls">
+                    <button class="page-btn back-btn" data-page="main">KEMBALI</button>
+                    <button class="page-btn continue-btn">SELANJUTNYA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Screen -->
+        <div id="music-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                    <div class="page-header">Music Player</div>
+                    <div class="music-content">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="page-controls">
+                    <button class="page-btn back-btn" data-page="main">KEMBALI</button>
+                    <button class="page-btn continue-btn">SELANJUTNYA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Message Modal -->
+        <div id="final-message-modal" class="modal">
+            <div class="modal-content">
+                <div class="final-message-title">INGET YA!</div>
+                <div class="final-message-text">
+                    <p>walaupun kamu kalah,</p>
+                    <p>tapi kamu selalu menang</p>
+                    <p>kok di hati aku, HEHE</p>
+                    <p>^_^</p>
+                    <p class="love-text">I LOVE YOU &lt;3</p>
+                </div>
+                <button class="modal-btn" id="ok-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flower Animation Container -->
+    <div id="flower-container" class="flower-container">
+        <!-- Flowers will be generated by JavaScript -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
