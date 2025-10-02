@@ -1,3 +1,6 @@
+/* Import modern fonts - HARUS DI ATAS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -5,17 +8,41 @@
     box-sizing: border-box;
 }
 
-/* Import modern fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-
+/* Custom Background Styles */
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: 
+        linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%),
+        url('./images/Gambar 2.jpg') center/cover no-repeat fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+/* Fallback jika gambar tidak ada */
+/* body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -2;
+} */
+
+/* Background overlay untuk readability */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
 }
 
 #gameboy-container {
@@ -62,7 +89,7 @@ body {
 
 /* Loading Screen Styles - Modern & Imut */
 #loading-screen {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
 }
 
 #loading-screen .gameboy-screen {
@@ -1367,7 +1394,8 @@ body {
 
 /* Password Screen Styles */
 #password-screen {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    /* Hapus baris ini agar menggunakan background body */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1674,154 +1702,5 @@ body {
 
 .birthday-title {
     animation: glow 2s ease-in-out infinite;
-}
-
-/* Flower Animation Styles */
-.flower-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    overflow: hidden;
-}
-
-.flower {
-    position: absolute;
-    font-size: 20px;
-    color: #ff69b4;
-    opacity: 0.8;
-    animation: fallDown 8s linear infinite;
-    pointer-events: none;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-}
-
-.flower:nth-child(odd) {
-    color: #ff1493;
-    animation-duration: 10s;
-    animation-delay: -2s;
-}
-
-.flower:nth-child(3n) {
-    color: #ffc0cb;
-    animation-duration: 12s;
-    animation-delay: -4s;
-}
-
-.flower:nth-child(4n) {
-    color: #ff69b4;
-    animation-duration: 9s;
-    animation-delay: -1s;
-}
-
-.flower:nth-child(5n) {
-    color: #ff1493;
-    animation-duration: 11s;
-    animation-delay: -3s;
-}
-
-@keyframes fallDown {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 0.8;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Flower sway animation */
-.flower::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: radial-gradient(circle, rgba(255, 105, 180, 0.2) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: flowerGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes flowerGlow {
-    0% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
-    100% {
-        transform: scale(1.2);
-        opacity: 0.6;
-    }
-}
-
-/* Special flower types */
-.flower.rose {
-    color: #ff1493;
-    font-size: 24px;
-}
-
-.flower.cherry {
-    color: #ff69b4;
-    font-size: 18px;
-}
-
-.flower.pink {
-    color: #ffc0cb;
-    font-size: 22px;
-}
-
-/* Heart flowers */
-.flower.heart {
-    color: #ff69b4;
-    font-size: 20px;
-    animation: heartFloat 6s ease-in-out infinite;
-}
-
-@keyframes heartFloat {
-    0%, 100% {
-        transform: translateY(-100px) rotate(0deg) scale(1);
-    }
-    25% {
-        transform: translateY(25vh) rotate(90deg) scale(1.1);
-    }
-    50% {
-        transform: translateY(50vh) rotate(180deg) scale(0.9);
-    }
-    75% {
-        transform: translateY(75vh) rotate(270deg) scale(1.05);
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg) scale(1);
-    }
-}
-
-/* Sparkle effect for flowers */
-.flower::after {
-    content: '✨';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 12px;
-    animation: sparkle 1.5s ease-in-out infinite;
-}
-
-@keyframes sparkle {
-    0%, 100% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 

@@ -11,10 +11,6 @@ let currentMusicIndex = 0;
 let isPlaying = false;
 let playbackInterval = null;
 
-// Flower Animation Functions
-let flowerInterval = null;
-let isFlowersActive = false;
-
 // Password Screen Functions
 let attempts = 0;
 const maxAttempts = 3;
@@ -29,7 +25,6 @@ function initializeApp() {
     showScreen('password'); // Start with password screen instead of loading
     addEventListeners();
     initializeTetris();
-    addFlowerTriggers();
 }
 
 function simulateLoading() {
@@ -233,9 +228,6 @@ function validatePassword() {
         if (passwordContainer) {
             passwordContainer.classList.add('success');
         }
-        
-        // Trigger flower burst
-        triggerFlowerBurst();
         
         // Transition to loading screen after delay
         setTimeout(() => {
@@ -1329,126 +1321,4 @@ function handleContinueNavigation() {
         default:
             showScreen('main');
     }
-}
-
-// Flower Animation Functions
-function createFlower() {
-    const flowerContainer = document.getElementById('flower-container');
-    if (!flowerContainer) return;
-    
-    const flower = document.createElement('div');
-    flower.className = 'flower';
-    
-    // Random flower types and emojis
-    const flowerTypes = [
-        { emoji: '🌸', class: 'cherry' },
-        { emoji: '🌺', class: 'rose' },
-        { emoji: '🌼', class: 'pink' },
-        { emoji: '💕', class: 'heart' },
-        { emoji: '🌷', class: 'pink' },
-        { emoji: '🌻', class: 'cherry' },
-        { emoji: '🌹', class: 'rose' }
-    ];
-    
-    const randomFlower = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
-    flower.textContent = randomFlower.emoji;
-    flower.classList.add(randomFlower.class);
-    
-    // Random horizontal position
-    flower.style.left = Math.random() * 100 + '%';
-    
-    // Random animation duration
-    const duration = 8 + Math.random() * 4; // 8-12 seconds
-    flower.style.animationDuration = duration + 's';
-    
-    // Random delay
-    const delay = Math.random() * 2;
-    flower.style.animationDelay = '-' + delay + 's';
-    
-    flowerContainer.appendChild(flower);
-    
-    // Remove flower after animation completes
-    setTimeout(() => {
-        if (flower.parentNode) {
-            flower.parentNode.removeChild(flower);
-        }
-    }, (duration + delay) * 1000);
-}
-
-function startFlowerAnimation() {
-    if (isFlowersActive) return;
-    
-    isFlowersActive = true;
-    const flowerContainer = document.getElementById('flower-container');
-    if (flowerContainer) {
-        flowerContainer.style.display = 'block';
-    }
-    
-    // Create flowers every 500ms
-    flowerInterval = setInterval(createFlower, 500);
-    
-    // Create initial burst of flowers
-    for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-            createFlower();
-        }, i * 100);
-    }
-}
-
-function stopFlowerAnimation() {
-    if (!isFlowersActive) return;
-    
-    isFlowersActive = false;
-    if (flowerInterval) {
-        clearInterval(flowerInterval);
-        flowerInterval = null;
-    }
-    
-    const flowerContainer = document.getElementById('flower-container');
-    if (flowerContainer) {
-        flowerContainer.style.display = 'none';
-        // Clear all existing flowers
-        flowerContainer.innerHTML = '';
-    }
-}
-
-function triggerFlowerBurst() {
-    // Create a burst of flowers for special moments
-    for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-            createFlower();
-        }, i * 50);
-    }
-}
-
-// Add flower animation to special moments
-function addFlowerTriggers() {
-    // Start flowers when loading completes
-    setTimeout(() => {
-        startFlowerAnimation();
-    }, 3000);
-    
-    // Trigger flower burst on button clicks
-    const menuButtons = document.querySelectorAll('.menu-btn');
-    menuButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            triggerFlowerBurst();
-        });
-    });
-    
-    // Trigger flowers when viewing photos
-    const photoBtn = document.querySelector('.photo-btn');
-    if (photoBtn) {
-        photoBtn.addEventListener('click', function() {
-            triggerFlowerBurst();
-        });
-    }
-    
-    // Trigger flowers when playing music
-    const playlistBtns = document.querySelectorAll('.playlist-btn');
-    playlistBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            triggerFlowerBurst();
-        });
-    });
 }
